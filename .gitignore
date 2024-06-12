@@ -1,0 +1,4 @@
+node_modules/
+launchOptions.txt
+launchOptions.old.txt
+launchGame.js

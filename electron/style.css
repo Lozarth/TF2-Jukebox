@@ -1,0 +1,15 @@
+body {
+    background-color: #211f23;
+}
+
+#audioSource {
+    width: 100%;   
+}
+
+audio::-webkit-media-controls-panel {
+    background-color: #cfcfcf;
+}
+
+audio::-webkit-media-controls-play-button {
+    color: white;
+}
