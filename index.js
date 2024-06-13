@@ -171,10 +171,6 @@ async function main() {
         }
     }, 5000)
 
-    setInterval(async function () {
-        await rconClient.execute('+voicerecord')
-    }, 3000)
-
     // After authentication, start listening to console log file
     authEvent.on('authenticated', function () {
         fs.watchFile(logFilePath, async function () {
