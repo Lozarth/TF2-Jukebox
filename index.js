@@ -32,26 +32,6 @@ let queue = []
 // Functions
 
 /**
- * Fixes the microphone settings by setting the default sound device and executing voice commands via the RCON client.
- */
-async function fixMicrophone() {
-    // Set default sound device
-    exec(`"${nircmdPath}" setdefaultsounddevice "CABLE Output" 1`, async function (error, stdout, stderr) {
-        if (error) return console.error(`Error setting default microphone: ${error.message}`)
-        if (stderr) return console.error(`stderr: ${stderr}`)
-        console.log('Default microphone set successfully.')
-
-        await rconClient.execute('voice_loopback 1')
-        await rconClient.execute('voice_buffer_ms 200')
-
-        await rconClient.execute('-voicerecord')
-        setTimeout(async function () {
-            await rconClient.execute('+voicerecord')
-        }, 1000)
-    })
-}
-
-/**
  * Authenticates the RCON client and performs post-authentication actions.
  */
 async function authenticate() {
@@ -153,6 +133,26 @@ async function playSong(query) {
     } else {
         say({ text: `Added ${song.title} to queue`, team: true })
     }
+}
+
+/**
+ * Fixes the microphone settings by setting the default sound device and executing voice commands via the RCON client.
+ */
+async function fixMicrophone() {
+    // Set default sound device
+    exec(`"${nircmdPath}" setdefaultsounddevice "CABLE Output" 1`, async function (error, stdout, stderr) {
+        if (error) return console.error(`Error setting default microphone: ${error.message}`)
+        if (stderr) return console.error(`stderr: ${stderr}`)
+        console.log('Default microphone set successfully.')
+
+        await rconClient.execute('voice_loopback 1')
+        await rconClient.execute('voice_buffer_ms 200')
+
+        await rconClient.execute('-voicerecord')
+        setTimeout(async function () {
+            await rconClient.execute('+voicerecord')
+        }, 1000)
+    })
 }
 
 /**
